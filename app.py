@@ -221,7 +221,8 @@ class App(tk.Tk):
         super().__init__()
         self.title("E-Commerce Return Prediction")
         self.geometry("1200x780")
-        self.resizable(False, False)                 # not resizable (requirement)
+        self.resizable(True, True)
+        self.minsize(1200, 780)                 # not resizable (requirement)
 
         self.dark = True
         self.page = "dashboard"
@@ -697,7 +698,7 @@ class App(tk.Tk):
         tree = ttk.Treeview(parent, columns=cols, show="headings", height=height)
         for col in cols:
             tree.heading(col, text=col.replace("Return Probability", "Probability"))
-            tree.column(col, width=130 if col in ("Verdict", "Return Probability") else 90,
+            tree.column(col, width=140 if col == "Verdict" else 110 if col == "Return Probability" else 80,
                         anchor="center")
         tree.tag_configure("red", foreground=T["red"])
         tree.tag_configure("green", foreground=T["green"])

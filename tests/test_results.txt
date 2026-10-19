@@ -1,0 +1,22 @@
+PASS  T01 Model + schema files load                                                
+PASS  T02 feature_order matches the model's training columns                       12 columns, same order
+PASS  T03 model_comparison.csv: 5 models, best = schema best_model                 best = Logistic Regression (ROC-AUC 0.6553)
+PASS  T04 Window title and not resizable                                           
+PASS  T05 Default inputs come from schema medians                                  price 254, qty 3, age 44, June, Thursday, 12:00
+PASS  T06 All four pages render without errors                                     dashboard, predict, compare, history
+PASS  T07 Auto-calculated Total = Price x Quantity                                 
+PASS  T08 Is_Weekend is Yes only for Saturday/Sunday (days 5, 6)                   
+PASS  T09 Validation rejects 13 bad inputs with an error popup                     text price, zero price, negative price, empty price, quantity 0, negative quantity, decimal quantity, text quantity, age 17 (<18), age 101 (>100), text age, empty age, decimal age
+PASS  T10 Validation accepts boundary values (age 18 & 100, qty 1, price 0.01)     
+PASS  T11 Missing dropdown selection shows an error                                
+PASS  T12 Default input gives a probability between 0 and 1                        47.7%
+PASS  T13 App probability equals a direct model.predict_proba call                 app 0.624595 == model 0.624595
+PASS  T14 Probability >= 50% -> 'Likely to be RETURNED' in red                     56.5% -> red
+PASS  T15 Probability < 50% -> 'Unlikely to be returned' in green                  33.9% -> green
+PASS  T16 Progress bar shows the probability                                       
+PASS  T17 Sweep every category x payment x gender x weekday x quantity (128 runs)  128 runs, no errors, range 38.2%-67.0%
+PASS  T18 Clear button restores default values and resets the result               
+PASS  T19 Dark/Light toggle switches palette and keeps data                        
+PASS  T20 History records predictions; Export CSV writes a valid file              
+------------------------------------------------------------
+20/20 tests passed
