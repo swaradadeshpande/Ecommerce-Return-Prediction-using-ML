@@ -15,8 +15,7 @@ A desktop dashboard (Python + Tkinter) that predicts the probability that an onl
 5. [How it works](#how-it-works)
 6. [Model performance](#model-performance)
 7. [Testing](#testing)
-8. [Limitations](#limitations)
-9. [Viva cheat-sheet](#viva-cheat-sheet)
+
 
 ---
 
