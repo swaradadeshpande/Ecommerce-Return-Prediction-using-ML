@@ -229,37 +229,4 @@ These are the two rows shown in the History screenshots.
 
 ---
 
-## Limitations
 
-- **Modest predictive power.** The best ROC-AUC is about 0.655, so the model is better than guessing but far from certain. Treat the percentage as a risk score, not a guarantee. This is worth stating in your viva.
-- **Association, not cause.** The factor chart on the dashboard shows what the model learned from the data. It does not prove that a feature causes returns.
-- **Session-only history.** History resets when the app closes unless you click **Export CSV**.
-- **Same-folder files.** The model must be loaded with the scikit-learn version it was saved with.
-
----
-
-## Viva cheat-sheet
-
-**Why logistic regression as the final model?**
-It had the highest ROC-AUC on the test set (0.6553) and the best cross-validated score, and it is fast and easy to explain. The more complex models did not beat it.
-
-**What does `predict_proba(df)[0, 1]` mean?**
-`predict_proba` returns one row per sample with the probabilities of class 0 (kept) and class 1 (returned). `[0, 1]` is the first row, class 1, which is the chance of return.
-
-**Why is Total Purchase Amount calculated and not asked?**
-It is `Price × Quantity`, so asking for it could create inconsistent inputs. Price_per_Unit and Is_Weekend are derived the same way, exactly as they were when the model was trained.
-
-**Why must the columns be in a fixed order?**
-The pipeline's preprocessing was fitted on named columns in a specific order. `feature_order` guarantees the GUI builds the same layout.
-
-**Why a Pipeline?**
-Imputation, scaling, one-hot encoding and the classifier are saved together, so the GUI can pass raw values and no preprocessing code is duplicated.
-
-**What does the 50 % threshold mean?**
-If the predicted chance of return is at least 50 %, the app labels the order *Likely to be RETURNED*. The model was trained with balanced class weights, so 50 % is a fair cut-off.
-
-**How does the theme switch work?**
-Two palettes are stored as dictionaries; clicking the switch swaps the active one and re-renders the UI, while the data stays in Tkinter variables.
-
-**Why ROC-AUC for comparison?**
-It measures how well the model ranks returned orders above kept ones across all thresholds, so it does not depend on one cut-off.
